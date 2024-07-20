@@ -15,17 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 use app\Http\Controllers\Api\PersonaController;
 
-Route::get('/persona',[PersonaController::class,'index']);
-
-Route::get('/persona/{id}', function () {
-    return 'consiguiendo persona';
-});
-Route::put('/persona/{id}', function () {
-    return 'guardando persona';
-});
-Route::delete('/persona/{id}', function () {
-    return 'borrando persona';
-});
-Route::post('/persona', function () {
-    return 'creando persona';
-});
+Route::get('/persona/{id}', [PersonaController::class, 'show']);
+Route::get('/persona', [PersonaController::class, 'index']);
+Route::put('/persona/{id}', [PersonaController::class, 'update']);
+Route::post('/persona', [PersonaController::class, 'store']);
+Route::delete('/persona/{id}', [PersonaController::class, 'destroy']);
