@@ -1,0 +1,4 @@
+hola, habian varios comandos como el php artisan serve o el php artisan migrate que no me funcionaban y no supe como solucionarlos
+para la proxima lo tendre resuelto. por otro lado fui un bobo y me di cuenta que estaba commiteando el archivo incorrecto,
+al no poder commitear decidi seguir de largo y resolverlo luego, esa es la razon de la poca cantidad de commits
+att: martin gaite 3-bh
