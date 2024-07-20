@@ -13,14 +13,17 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function listado()
     {
         $personas = Persona::all();
         if ($personas->isEmpty()) {
-            return response()->json(['message' => 'No hay personas guardadas'], 404);
+            return response()->json([
+                'message' => 'No hay personas guardadas'], 404);
         }
 
-        return response()->json(['personas' => $personas, 'status' => 200], 200);
+        return response()->json([
+        'personas' => $personas, 
+        'status' => 200], 200);
     }
 
     /**
@@ -29,7 +32,7 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function alta(Request $request)
     {
         $persona = Persona::create([
             'nombre' => $request->nombre,
@@ -38,10 +41,14 @@ class PersonaController extends Controller
         ]);
 
         if (!$persona) {
-            return response()->json(['message' => 'Error al crear persona', 'status' => 500], 500);
+            return response()->json([
+            'message' => 'Error al crear persona',
+            'status' => 500], 500);
         }
 
-        return response()->json(['persona' => $persona, 'status' => 201], 201);
+        return response()->json([
+            'persona' => $persona, 
+            'status' => 201], 201);
     }
 
     /**
@@ -50,11 +57,13 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function busqueda($id)
     {
         $persona = Persona::find($id);
         if (!$persona) {
-            return response()->json(['message' => 'Persona no encontrada', 'status' => 404], 404);
+            return response()->json([
+            'message' => 'Persona no encontrada', 
+            'status' => 404], 404);
         }
 
         return response()->json(['persona' => $persona, 'status' => 200], 200);
@@ -67,12 +76,14 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function modificacion(Request $request, $id)
     {
         $persona = Persona::find($id);
 
         if (!$persona) {
-            return response()->json(['message' => 'Persona no encontrada', 'status' => 404], 404);
+            return response()->json([
+            'message' => 'Persona no encontrada', 
+            'status' => 404], 404);
         }
 
         $persona->nombre = $request->nombre;
@@ -81,7 +92,9 @@ class PersonaController extends Controller
 
         $persona->save();
 
-        return response()->json(['message' => 'Persona actualizada', 'persona' => $persona, 'status' => 200], 200);
+        return response()->json([
+        'message' => 'Persona actualizada', 
+        'persona' => $persona, 'status' => 200], 200);
     }
 
     /**
@@ -90,14 +103,33 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function baja($id)
     {
         $persona = Persona::find($id);
         if (!$persona) {
-            return response()->json(['message' => 'Persona no encontrada', 'status' => 404], 404);
+            return response()->json([
+                'message' => 'Persona no encontrada', 
+                'status' => 404], 404);
         }
 
         $persona->delete();
-        return response()->json(['message' => 'Persona eliminada', 'status' => 200], 200);
+        return response()->json([
+        'message' => 'Persona eliminada',
+        'status' => 200], 200);
     }
+    public function mediamodificacion(Request $request, $id)
+    {
+        $persona = Persona::find($id);
+
+        if (!$persona) {
+            $data = [
+                'message' => "persona no hallada",
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+      
+
+    }
+
 }

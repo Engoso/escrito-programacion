@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 use app\Http\Controllers\Api\PersonaController;
 
-Route::get('/persona',[PersonaController::class,'index']);
+Route::get('/persona',[PersonaController::class,'listado']);
 
-Route::get('/persona/{id}', [PersonaController::class,'show']); 
+Route::get('/persona/{id}', [PersonaController::class,'buqueda']); 
 
-Route::delete('/persona/{id}', [PersonaController::class,'destroy']);
+Route::delete('/persona/{id}', [PersonaController::class,'baja']);
 
-Route::put('/persona/{id}', [PersonaController::class,'update']);
+Route::put('/persona/{id}', [PersonaController::class,'modificacion']);
 
-Route::post('/persona', [PersonaController::class, 'store']);
+Route::post('/persona', [PersonaController::class, 'alta']);
+
+Route::patch('/persona/{id}', [PersonaController::class, 'mediamodificacion']);
