@@ -15,14 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 use app\Http\Controllers\Api\PersonaController;
 
-Route::get('/persona/{id}', [PersonaController::class, 'show']);
+Route::get('/persona',[PersonaController::class,'index']);
 
-Route::get('/persona', [PersonaController::class, 'index']);
+Route::get('/persona/{id}', [PersonaController::class,'show']); 
 
-Route::put('/persona/{id}', [PersonaController::class, 'update']);
+Route::delete('/persona/{id}', [PersonaController::class,'destroy']);
 
-Route::patch('/persona/{id}', [PersonaController::class, 'updatePartial']);
+Route::put('/persona/{id}', [PersonaController::class,'update']);
 
 Route::post('/persona', [PersonaController::class, 'store']);
-
-Route::delete('/persona/{id}', [PersonaController::class, 'destroy']);
